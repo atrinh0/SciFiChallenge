@@ -198,7 +198,7 @@ struct ContentView: View {
                 .overlay {
                     Image("ufp-logo")
                         .opacity(0.15)
-                        .offset(x: 50, y: -120)
+                        .offset(x: 50, y: -90)
                 }
             }
         }
@@ -213,16 +213,16 @@ struct ContentView: View {
                         y: .value("Temperature", $0.max),
                         series: .value("High", "High")
                     )
-                    .foregroundStyle(Color.red)
+                    .foregroundStyle(Color.lcarPlum)
                     .symbol(Circle())
                 }
                 ForEach(weatherData.dailyForecasts) {
                     LineMark(
                         x: .value("Date", $0.date),
-                        y: .value("Low", $0.min),
+                        y: .value("Temperature", $0.min),
                         series: .value("Low", "Low")
                     )
-                    .foregroundStyle(Color.blue)
+                    .foregroundStyle(Color.lcarViolet)
                     .symbol(Circle())
                 }
             } else if chartView == .linePlain {
@@ -232,44 +232,143 @@ struct ContentView: View {
                         y: .value("Temperature", $0.max),
                         series: .value("High", "High")
                     )
-                    .foregroundStyle(Color.red)
+                    .foregroundStyle(Color.lcarPlum)
                 }
                 ForEach(weatherData.dailyForecasts) {
                     LineMark(
                         x: .value("Date", $0.date),
-                        y: .value("Low", $0.min),
+                        y: .value("Temperature", $0.min),
                         series: .value("Low", "Low")
                     )
-                    .foregroundStyle(Color.blue)
+                    .foregroundStyle(Color.lcarViolet)
+                }
+            } else if chartView == .bar {
+                ForEach(weatherData.dailyForecasts) {
+                    BarMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Temperature", $0.max)
+                    )
+                    .foregroundStyle(Color.lcarPlum)
+                }
+                ForEach(weatherData.dailyForecasts) {
+                    BarMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Temperature", $0.min),
+                        stacking: .unstacked
+                    )
+                    .foregroundStyle(Color.lcarViolet)
+                }
+            } else {
+                ForEach(weatherData.dailyForecasts) {
+                    RuleMark(
+                        x: .value("Date", $0.date),
+                        yStart: .value("High", $0.max),
+                        yEnd: .value("Low", $0.min)
+                    )
+                    .foregroundStyle(Color.lcarPlum)
                 }
             }
         }
         .frame(width: 300, height: 250)
         .preferredColorScheme(.dark)
-        .offset(x: 60, y: 50)
+        .offset(x: 60, y: 70)
     }
 
     private var buttons: some View {
-        Color.white
-            .frame(width: 300, height: 150)
-            .offset(x: 60, y: 275)
-            .onTapGesture {
-                withAnimation {
-                    if chartView == .linePlain {
+        Grid {
+            GridRow {
+                Button {
+                    withAnimation {
                         chartView = .lineSymbol
-                    } else {
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.lcarViolet)
+                        .frame(width: 125, height: 50)
+                        .overlay(alignment: .bottomTrailing) {
+                            HStack {
+                                Spacer()
+                                Text("\(randomDigits(4))-\(randomDigits(3))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                            .padding(.trailing, 20)
+                        }
+                }
+                Button {
+                    withAnimation {
                         chartView = .linePlain
                     }
+                } label: {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.lcarTan)
+                        .frame(width: 125, height: 50)
+                        .overlay(alignment: .bottomTrailing) {
+                            HStack {
+                                Spacer()
+                                Text("\(randomDigits(4))-\(randomDigits(3))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                            .padding(.trailing, 20)
+                        }
                 }
             }
+            GridRow {
+                Button {
+                    withAnimation {
+                        chartView = .bar
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.lcarOrange)
+                        .frame(width: 125, height: 50)
+                        .overlay(alignment: .bottomTrailing) {
+                            HStack {
+                                Spacer()
+                                Text("\(randomDigits(4))-\(randomDigits(3))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                            .padding(.trailing, 20)
+                        }
+                }
+                Button {
+                    withAnimation {
+                        chartView = .rule
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(.lcarViolet)
+                        .frame(width: 125, height: 50)
+                        .overlay(alignment: .bottomTrailing) {
+                            HStack {
+                                Spacer()
+                                Text("\(randomDigits(4))-\(randomDigits(3))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                            .padding(.trailing, 20)
+                        }
+                }
+            }
+        }
+        .frame(width: 300, height: 150)
+        .offset(x: 85, y: 300)
     }
 
     private func randomDigits(_ count: Int) -> String {
-        var randString = ""
-        for _ in 0...(count - 1) {
-            randString += "\(Int.random(in: 0...9))"
-        }
-        return randString
+        (1...count)
+            .map { _ in "\(Int.random(in: 0...9))" }
+            .joined()
     }
 }
 
