@@ -1,5 +1,7 @@
 # Challenge: SwiftUI science fiction! 🖖🏻
 
+https://developer.apple.com/news/?id=f4phvjei
+
 ![](https://upload.wikimedia.org/wikipedia/en/8/88/Star_Trek_PADD.jpg?20180101012719)
 
 I went with a Star Trek theme, inspired by the LCARS (Library Computer Access/Retrieval System) design.
@@ -25,10 +27,6 @@ Bar chart | Rule chart
 <img src="images/reference.png">
 
 Source: https://en.wikipedia.org/wiki/LCARS
-
-### Links
-
-Challenge details: https://developer.apple.com/news/?id=f4phvjei
 
 ### Workarounds
 
