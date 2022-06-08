@@ -9,7 +9,6 @@ import Foundation
 import WeatherKit
 import CoreLocation
 
-@available(iOS 16.0, *)
 @MainActor
 class WeatherData: ObservableObject {
     @Published var dailyForecasts: [DailyForecast] = []
