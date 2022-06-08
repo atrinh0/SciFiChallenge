@@ -99,14 +99,57 @@ struct ContentView: View {
     private var bottomContent: some View {
         GeometryReader { geo in
             ZStack {
-                VStack(spacing: 5) {
+                VStack(alignment: .leading, spacing: 5) {
                     Color.lcarPlum
                         .frame(height: 100)
+                        .overlay(alignment: .bottomLeading) {
+                            HStack {
+                                Spacer()
+                                Text("03-\(randomDigits(6))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 90)
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                        }
                     Color.lcarPlum
                         .frame(height: 200)
+                        .overlay(alignment: .bottomLeading) {
+                            HStack {
+                                Spacer()
+                                Text("04-\(randomDigits(6))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 90)
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.bottom, 5)
+                        }
                     Color.lcarOrange
                         .frame(height: 50)
+                        .overlay(alignment: .leading) {
+                            HStack {
+                                Spacer()
+                                Text("05-\(randomDigits(6))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 90)
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                        }
                     Color.lcarTan
+                        .overlay(alignment: .topLeading) {
+                            HStack {
+                                Spacer()
+                                Text("06-\(randomDigits(6))")
+                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                                    .foregroundColor(.black)
+                            }
+                            .frame(width: 90)
+                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            .padding(.top, 5)
+                        }
                 }
                 .cornerRadius(70, corners: .topLeft)
                 .overlay(alignment: .bottomTrailing) {
@@ -133,16 +176,6 @@ struct ContentView: View {
                         }
                     }
                     .frame(width: 200, height: 20)
-                }
-                .overlay(alignment: .leading) {
-                    VStack(alignment: .trailing, spacing: 15) {
-                        Text("LCARS \(randomDigits(5))")
-                        Text("02-\(randomDigits(6))")
-                    }
-                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                    .foregroundColor(.black)
-                    .scaleEffect(x: 0.7, anchor: .trailing)
-                    .frame(width: 90)
                 }
                 .overlay(alignment: .bottomTrailing) {
                     Text("DATA NODE 188")
