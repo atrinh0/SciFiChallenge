@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import Charts
+
+enum ChartView {
+    case lineSymbol
+    case linePlain
+    case bar
+    case rule
+}
 
 struct ContentView: View {
     @StateObject private var weatherData = WeatherData()
+    @State private var chartView: ChartView = .lineSymbol
 
     var body: some View {
         GeometryReader { geo in
@@ -20,6 +29,8 @@ struct ContentView: View {
                     bottomContent
                         .frame(height: geo.size.height * (2/3) - 10)
                 }
+                chart
+                buttons
             }
         }
         .edgesIgnoringSafeArea(.all)
@@ -186,11 +197,71 @@ struct ContentView: View {
                 }
                 .overlay {
                     Image("ufp-logo")
-                        .opacity(0.1)
-                        .offset(x: 50)
+                        .opacity(0.15)
+                        .offset(x: 50, y: -120)
                 }
             }
         }
+    }
+
+    private var chart: some View {
+        Chart {
+            if chartView == .lineSymbol {
+                ForEach(weatherData.dailyForecasts) {
+                    LineMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Temperature", $0.max),
+                        series: .value("High", "High")
+                    )
+                    .foregroundStyle(Color.red)
+                    .symbol(Circle())
+                }
+                ForEach(weatherData.dailyForecasts) {
+                    LineMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Low", $0.min),
+                        series: .value("Low", "Low")
+                    )
+                    .foregroundStyle(Color.blue)
+                    .symbol(Circle())
+                }
+            } else if chartView == .linePlain {
+                ForEach(weatherData.dailyForecasts) {
+                    LineMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Temperature", $0.max),
+                        series: .value("High", "High")
+                    )
+                    .foregroundStyle(Color.red)
+                }
+                ForEach(weatherData.dailyForecasts) {
+                    LineMark(
+                        x: .value("Date", $0.date),
+                        y: .value("Low", $0.min),
+                        series: .value("Low", "Low")
+                    )
+                    .foregroundStyle(Color.blue)
+                }
+            }
+        }
+        .frame(width: 300, height: 250)
+        .preferredColorScheme(.dark)
+        .offset(x: 60, y: 50)
+    }
+
+    private var buttons: some View {
+        Color.white
+            .frame(width: 300, height: 150)
+            .offset(x: 60, y: 275)
+            .onTapGesture {
+                withAnimation {
+                    if chartView == .linePlain {
+                        chartView = .lineSymbol
+                    } else {
+                        chartView = .linePlain
+                    }
+                }
+            }
     }
 
     private func randomDigits(_ count: Int) -> String {
