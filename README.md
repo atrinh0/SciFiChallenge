@@ -14,6 +14,12 @@ Tech used:
 
 ### Result
 
+
+https://user-images.githubusercontent.com/16542463/172809894-bcc8c324-34d5-4bc7-9c97-09ee9391fedb.mp4
+
+
+
+
 Line chart with Symbols | Line chart
 --|--
 <img src="images/lineSymbols.png"> | <img src="images/linePlain.png">
