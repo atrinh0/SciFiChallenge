@@ -12,13 +12,11 @@ Tech used:
 - Swift Charts 📈
 - SwiftUI `Grid` for the numbers and buttons layout
 
+> Please note, this is not production level code
+
 ### Result
 
-
 https://user-images.githubusercontent.com/16542463/172809894-bcc8c324-34d5-4bc7-9c97-09ee9391fedb.mp4
-
-
-
 
 Line chart with Symbols | Line chart
 --|--
@@ -40,4 +38,11 @@ After adding my bundle id and marking the capability and services to enable Weat
 
 As a workaround, I have temporarily used the bundle id from the sample sessions to obtain the weather data. `com.example.apple-samplecode.FlightPlanner`
 
-> Please note, this is not production level code
+### Resources
+
+Thing | Link
+--|--
+What's new in SwiftUI | https://developer.apple.com/videos/play/wwdc2022/10052/
+Meet WeatherKit | https://developer.apple.com/videos/play/wwdc2022/10003/
+Hello Swift Charts | https://developer.apple.com/videos/play/wwdc2022/10136/
+
