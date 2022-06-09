@@ -34,7 +34,7 @@ Source: https://en.wikipedia.org/wiki/LCARS
 
 ### Workarounds
 
-After adding my bundle id and marking the capability and services to enable WeatherKit, I still receive the `401` error (after many hours).
+After adding my bundle id and marking the `Capabilities` and `App Services` to enable WeatherKit, I still receive the `401` error (after many hours).
 
 As a workaround, I have temporarily used the bundle id from the sample sessions to obtain the weather data. `com.example.apple-samplecode.FlightPlanner`
 
