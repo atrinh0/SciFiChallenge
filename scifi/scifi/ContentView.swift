@@ -282,40 +282,16 @@ struct ContentView: View {
                         chartView = .lineSymbol
                     }
                 } label: {
-                    RoundedRectangle(cornerRadius: 20)
+                    commonButton
                         .foregroundColor(.lcarViolet)
-                        .frame(width: 125, height: 50)
-                        .overlay(alignment: .bottomTrailing) {
-                            HStack {
-                                Spacer()
-                                Text("\(randomDigits(4))-\(randomDigits(3))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
-                            .padding(.trailing, 20)
-                        }
                 }
                 Button {
                     withAnimation {
                         chartView = .linePlain
                     }
                 } label: {
-                    RoundedRectangle(cornerRadius: 20)
+                    commonButton
                         .foregroundColor(.lcarTan)
-                        .frame(width: 125, height: 50)
-                        .overlay(alignment: .bottomTrailing) {
-                            HStack {
-                                Spacer()
-                                Text("\(randomDigits(4))-\(randomDigits(3))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
-                            .padding(.trailing, 20)
-                        }
                 }
             }
             GridRow {
@@ -324,45 +300,37 @@ struct ContentView: View {
                         chartView = .bar
                     }
                 } label: {
-                    RoundedRectangle(cornerRadius: 20)
+                    commonButton
                         .foregroundColor(.lcarOrange)
-                        .frame(width: 125, height: 50)
-                        .overlay(alignment: .bottomTrailing) {
-                            HStack {
-                                Spacer()
-                                Text("\(randomDigits(4))-\(randomDigits(3))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
-                            .padding(.trailing, 20)
-                        }
                 }
                 Button {
                     withAnimation {
                         chartView = .rule
                     }
                 } label: {
-                    RoundedRectangle(cornerRadius: 20)
+                    commonButton
                         .foregroundColor(.lcarViolet)
-                        .frame(width: 125, height: 50)
-                        .overlay(alignment: .bottomTrailing) {
-                            HStack {
-                                Spacer()
-                                Text("\(randomDigits(4))-\(randomDigits(3))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
-                            .padding(.trailing, 20)
-                        }
                 }
             }
         }
         .frame(width: 300, height: 150)
         .offset(x: 85, y: 300)
+    }
+
+    private var commonButton: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .frame(width: 125, height: 50)
+            .overlay(alignment: .bottomTrailing) {
+                HStack {
+                    Spacer()
+                    Text("\(randomDigits(4))-\(randomDigits(3))")
+                        .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                        .foregroundColor(.black)
+                }
+                .scaleEffect(x: 0.7, anchor: .trailing)
+                .padding(.bottom, 5)
+                .padding(.trailing, 20)
+            }
     }
 
     private func randomDigits(_ count: Int) -> String {
