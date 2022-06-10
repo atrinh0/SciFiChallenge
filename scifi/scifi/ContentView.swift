@@ -245,19 +245,23 @@ struct ContentView: View {
             } else if chartView == .bar {
                 ForEach(weatherData.dailyForecasts) {
                     BarMark(
-                        x: .value("Date", $0.date),
+                        x: .value("Date", $0.date, unit: .day),
                         y: .value("Temperature", $0.max)
                     )
                     .foregroundStyle(Color.lcarPlum)
                 }
+                .foregroundStyle(by: .value("Type", "High"))
+                .position(by: .value("Type", "High"))
                 ForEach(weatherData.dailyForecasts) {
                     BarMark(
-                        x: .value("Date", $0.date),
+                        x: .value("Date", $0.date, unit: .day),
                         y: .value("Temperature", $0.min),
                         stacking: .unstacked
                     )
                     .foregroundStyle(Color.lcarViolet)
                 }
+                .foregroundStyle(by: .value("Type", "Low"))
+                .position(by: .value("Type", "Low"))
             } else {
                 ForEach(weatherData.dailyForecasts) {
                     RuleMark(
@@ -269,6 +273,7 @@ struct ContentView: View {
                 }
             }
         }
+        .chartLegend(.hidden)
         .frame(width: 300, height: 250)
         .preferredColorScheme(.dark)
         .offset(x: 60, y: 70)
