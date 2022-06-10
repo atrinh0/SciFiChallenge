@@ -114,52 +114,24 @@ struct ContentView: View {
                     Color.lcarPlum
                         .frame(height: 100)
                         .overlay(alignment: .bottomLeading) {
-                            HStack {
-                                Spacer()
-                                Text("03-\(randomDigits(6))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .frame(width: 90)
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
+                            commonLabel(prefix: "03")
+                                .padding(.bottom, 5)
                         }
                     Color.lcarPlum
                         .frame(height: 200)
                         .overlay(alignment: .bottomLeading) {
-                            HStack {
-                                Spacer()
-                                Text("04-\(randomDigits(6))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .frame(width: 90)
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.bottom, 5)
+                            commonLabel(prefix: "04")
+                                .padding(.bottom, 5)
                         }
                     Color.lcarOrange
                         .frame(height: 50)
                         .overlay(alignment: .leading) {
-                            HStack {
-                                Spacer()
-                                Text("05-\(randomDigits(6))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .frame(width: 90)
-                            .scaleEffect(x: 0.7, anchor: .trailing)
+                            commonLabel(prefix: "05")
                         }
                     Color.lcarTan
                         .overlay(alignment: .topLeading) {
-                            HStack {
-                                Spacer()
-                                Text("06-\(randomDigits(6))")
-                                    .font(.custom("HelveticaNeue-CondensedBold", size: 17))
-                                    .foregroundColor(.black)
-                            }
-                            .frame(width: 90)
-                            .scaleEffect(x: 0.7, anchor: .trailing)
-                            .padding(.top, 5)
+                            commonLabel(prefix: "06")
+                                .padding(.top, 5)
                         }
                 }
                 .cornerRadius(70, corners: .topLeft)
@@ -202,6 +174,17 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private func commonLabel(prefix: String) -> some View {
+        HStack {
+            Spacer()
+            Text("\(prefix)-\(randomDigits(6))")
+                .font(.custom("HelveticaNeue-CondensedBold", size: 17))
+                .foregroundColor(.black)
+        }
+        .frame(width: 90)
+        .scaleEffect(x: 0.7, anchor: .trailing)
     }
 
     private var chart: some View {
