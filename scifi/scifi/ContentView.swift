@@ -12,7 +12,7 @@ enum ChartView {
     case lineSymbol
     case linePlain
     case bar
-    case rule
+    case area
 }
 
 struct ContentView: View {
@@ -247,12 +247,12 @@ struct ContentView: View {
                 .position(by: .value("Type", "Low"))
             } else {
                 ForEach(weatherData.dailyForecasts) {
-                    RuleMark(
+                    AreaMark(
                         x: .value("Date", $0.date),
                         yStart: .value("High", $0.max),
                         yEnd: .value("Low", $0.min)
                     )
-                    .foregroundStyle(Color.lcarPlum)
+                    .foregroundStyle(Color.lcarLightOrange)
                 }
             }
         }
@@ -293,7 +293,7 @@ struct ContentView: View {
                 }
                 Button {
                     withAnimation {
-                        chartView = .rule
+                        chartView = .area
                     }
                 } label: {
                     commonButton

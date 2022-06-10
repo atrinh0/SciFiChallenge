@@ -22,9 +22,9 @@ Line chart with Symbols | Line chart
 --|--
 <img src="images/lineSymbols.png"> | <img src="images/linePlain.png">
 
-Bar chart | Rule chart
+Bar chart | Area chart
 --|--
-<img src="images/bar.png"> | <img src="images/rule.png">
+<img src="images/bar.png"> | <img src="images/area.png">
 
 ### Reference image
 
@@ -45,4 +45,3 @@ Thing | Link
 What's new in SwiftUI | https://developer.apple.com/videos/play/wwdc2022/10052/
 Meet WeatherKit | https://developer.apple.com/videos/play/wwdc2022/10003/
 Hello Swift Charts | https://developer.apple.com/videos/play/wwdc2022/10136/
-
