@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import WeatherKit
 
 enum ChartView {
     case lineSymbol
@@ -18,6 +19,8 @@ enum ChartView {
 struct ContentView: View {
     @StateObject private var weatherData = WeatherData()
     @State private var chartView: ChartView = .lineSymbol
+    @State private var attributionLink: URL = URL(string: "https://www.apple.com")!
+    @State private var attributionLogo: URL?
 
     var body: some View {
         GeometryReader { geo in
@@ -31,11 +34,22 @@ struct ContentView: View {
                 }
                 chart
                 buttons
+                Link(destination: attributionLink) {
+                    AsyncImage(url: attributionLogo)
+                        .colorInvert()
+                        .scaleEffect(0.65)
+                        .opacity(0.25)
+                }
+                .offset(x: 50, y: 220)
             }
         }
         .edgesIgnoringSafeArea(.all)
         .task {
             await weatherData.fetchDailyForecast()
+            if let attribution = try? await WeatherService.shared.attribution {
+                attributionLink = attribution.legalPageURL
+                attributionLogo = attribution.combinedMarkDarkURL
+            }
         }
     }
 
@@ -253,6 +267,7 @@ struct ContentView: View {
                         yEnd: .value("Low", $0.min)
                     )
                     .foregroundStyle(Color.lcarLightOrange)
+                    .opacity(0.9)
                 }
             }
         }
