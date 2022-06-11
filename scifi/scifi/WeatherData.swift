@@ -17,11 +17,11 @@ class WeatherData: ObservableObject {
         let weatherService = WeatherService()
         let brighton = CLLocation(latitude: 50.8229, longitude: 0.1363)
 
-        guard let weather = try? await weatherService.weather(for: brighton) else {
+        guard let weather = try? await weatherService.weather(for: brighton, including: .daily) else {
             return
         }
 
-        dailyForecasts = weather.dailyForecast.forecast.map {
+        dailyForecasts = weather.forecast.map {
             DailyForecast(date: $0.date, min: $0.lowTemperature.value, max: $0.highTemperature.value)
         }
     }
