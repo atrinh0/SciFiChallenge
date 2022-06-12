@@ -12,7 +12,7 @@ Tech used:
 - Swift Charts 📈
 - SwiftUI `Grid` for the numbers and buttons layout
 
-> Please note, this is not production level code
+> Disclaimer: This project is not affiliated with or endorsed by Star Trek in any way. This is posted as a way to share SwiftUI, WeatherKit, Swift Charts learnings (and is not production level code).
 
 ### Result
 
